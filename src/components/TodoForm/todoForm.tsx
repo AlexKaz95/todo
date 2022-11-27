@@ -9,7 +9,8 @@ interface ITodoForm {
 export const TodoForm: FC<ITodoForm> = function({ createTodo }){
     const DEFAULT_TODO = {
         title: '',
-        status: 'todo'
+        status: 'progress',
+        done: false
     };
 
     const [todo, setTodo] = useState(DEFAULT_TODO);

@@ -2,6 +2,7 @@
     width: 100%;
     box-shadow: 1px 1px 20px #ccc;
     border-radius: 10px;
-    padding: 40px 72px;
+    padding: 40px 56px;
     box-sizing: border-box;
+    margin-bottom: 80px;
 }

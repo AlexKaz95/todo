@@ -3,10 +3,21 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 16px;
-    padding-top: 16px;
+    padding: 16px;
     border-top: 1px solid #ccc;
     user-select: none;
     gap: 48px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.selected{
+    opacity: 0.3;
+}
+
+.title_done{
+    color: #999;
+    text-decoration: line-through;
 }
 
 .container:nth-child(1){

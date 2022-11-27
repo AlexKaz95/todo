@@ -20,9 +20,15 @@ function App() {
     return 0
   });
 
+  const [todosInProgress, setTodosInProgress] = useState(() => {
+    return todos.filter((todo) => todo.status==='done' || todo.status === 'progress');
+  });
+
+
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos))
     window.localStorage.setItem('todosCount', JSON.stringify(todosCount))
+    setTodosInProgress(todos.filter((todo) => todo.status==='done' || todo.status === 'progress'))
   }, [todos, todosCount])
 
   const markDone = function( id: number ){
@@ -31,7 +37,8 @@ function App() {
         if (todo.id === id){
           return {
             ...todo,
-            status: 'done'
+            status: 'done',
+            done: true
           } 
         }
         return todo
@@ -40,14 +47,28 @@ function App() {
      setTodosCount( todosCount - 1 );
   }
 
-  const forget = function( todo: ITodoItem ){
+  const forgetTodo = function( todo: ITodoItem ){
     setDeletingTodo(todo);
     setModalView(true);
   }
 
   const createTodo = function( data: ITodoItem ){
-    setTodos([...todos, {...data, id: todos.length + 1}]);
+    setTodos([...todos, {...data, id: todos[todos.length - 1].id + 1}]);
     setTodosCount( todosCount + 1 );
+  }
+
+  const archiveTodo = function( id: number ){
+    setTodos( 
+      todos.map(todo => { 
+        if (todo.id === id){
+          return {
+            ...todo,
+            status: 'archive',
+          } 
+        }
+        return todo
+      }
+     ));
   }
 
   const closeWindow: MouseEventHandler = function( e ){
@@ -73,7 +94,7 @@ function App() {
     <div className="App">
       <Header todosCount={ todosCount }/>
       <TodoForm createTodo={ createTodo }/>
-      <TodoPanel todos={ todos } markDone={ markDone } forget={ forget }  />
+      <TodoPanel todos={ todosInProgress } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} />
       { modalView && <ModalWindow deletingTodo={deletingTodo} closeWindow={ closeWindow } confirm={ confirm } cancel={ cancel }/> }
     </div>
   );
