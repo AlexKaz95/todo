@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #ccc;
+    user-select: none;
+    gap: 48px;
+}
+
+.container:nth-child(1){
+    margin-top: 0;
+    border-top: none;
+}
+
+.title{
+    text-align: start;
+    font-size: 16px;
+    font-weight: normal;
+    user-select: text;
+    max-width: fit-content;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.actionField{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
