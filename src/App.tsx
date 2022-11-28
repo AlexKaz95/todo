@@ -74,10 +74,9 @@ function App() {
   }
 
   const changeOrder = function(order: number, selected: ITodoItem ){
-    const selectedOrder = todos.findIndex(todo => todo.id === selected.id)
     setTodos(prev => {
-      const reordered = [...prev ];
-      reordered.splice(order, 0, ...reordered.splice(selectedOrder, 1));
+      const reordered = prev.filter(todo => todo.id !== selected.id)
+      reordered.splice(order, 0, selected);
       return reordered
     })
   }

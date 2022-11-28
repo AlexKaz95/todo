@@ -2,8 +2,6 @@ import React, { MouseEventHandler, useState } from "react";
 import { Button } from "../Button/button";
 import styles from "./todoItem.module.css";
 
-
-
 interface ITodoItemProps {
     todo: ITodoItem,
     markDone: Function,
