@@ -14,30 +14,46 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
     };
 
     const [todo, setTodo] = useState(DEFAULT_TODO);
+    const [notValidClass, setNotValidClass] = useState<string>('');
 
     const onChange: ChangeEventHandler = function( e: ChangeEvent<HTMLInputElement> ){
         e.preventDefault();
+        setNotValidClass('');
         const { id, value } = e.target;
         setTodo({ ...todo, [id]: value });
     }
 
     const createTodoWrapper: MouseEventHandler = function( e ){
         e.preventDefault();
-        createTodo( todo );
-        setTodo(DEFAULT_TODO);
+        if (isValid(todo)) {
+            createTodo( todo );
+            setTodo(DEFAULT_TODO);
+        } else {
+            setNotValidClass('notValid')
+        }
     }
 
     const enterDown: KeyboardEventHandler = function(e){
         if (e.key === 'Enter'){
-            createTodo( todo );
-            setTodo(DEFAULT_TODO);
+            if (isValid(todo)) {
+                createTodo( todo );
+                setTodo(DEFAULT_TODO);
+            } else {
+                setNotValidClass('notValid')
+            }
         }
+    }
+
+    const isValid = function( todo: any){
+        console.log(todo.title.length)
+        return todo.title.length > 0
     }
 
     return <div className={styles.form_container}>
         <input 
-            className={styles.form_input} 
+            className={`${styles.form_input}`} 
             tabIndex={0} 
+            required
             type="text" 
             value={todo.title} 
             name="title" 
@@ -45,7 +61,8 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
             onChange={onChange}
             autoComplete='off'
             placeholder="Я сделаю..."
-            onKeyDown={enterDown}
+            onKeyDown={ enterDown }
+            onBlur={() => { setNotValidClass('') }}
         />
         <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' order='main'/>
     </div>

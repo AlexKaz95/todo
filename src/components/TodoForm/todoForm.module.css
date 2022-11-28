@@ -17,13 +17,18 @@
 .form_input{
     padding: 10px 12px;
     border-radius: 10px;
-    border: 0px solid #333;
+    border: 0px solid #efefef;
     background: #efefef;
     color: #333;
     width: 65%;
+    box-sizing: border-box;
 }
 
 .form_input:focus{
     outline: auto;
     outline-color: #45d967;
+}
+
+.form_input:invalid{
+    outline-color: #e60000;
 }

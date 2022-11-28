@@ -4,5 +4,6 @@ interface ITodoItem {
     description: string,
     status: string,
     done: boolean,
-    id: number
+    id: number,
+    order?: number
 }
