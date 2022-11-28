@@ -23,9 +23,9 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
 
     const onDragOver = function( id: number, order: number ){
         const isMovable = selected && selected.id !== id;
-        console.log('movable', isMovable)
         if (isMovable) {
             changeOrder(order, selected);
+            return;
         }
     }
 
