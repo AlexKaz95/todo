@@ -29,10 +29,11 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
         }
     }
 
-    if (todos.length) {
+    const filteredTodos = todos.filter( (el: ITodoItem ) => el.status === 'done' || el.status === 'progress' )
+
+    if (filteredTodos.length) {
         return <div className={styles.todoPanel_container}>
-            { todos.map( (el: ITodoItem, index: number) => {
-                if( el.status === 'done' || el.status === 'progress') return <TodoItem 
+            { filteredTodos.map( (el: ITodoItem, index: number) => <TodoItem 
                 todo={el} 
                 order={index}
                 markDone={markDone} 
@@ -42,7 +43,7 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
                 onDragStart={onDragStart}
                 onDragEnd={onDragEnd}
                 onDragOver={onDragOver}
-            />}) }
+            />) }
         </div>
     } else {
         return <></>
