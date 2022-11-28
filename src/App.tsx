@@ -26,16 +26,10 @@ function App() {
     return 0
   });
 
-  const [todosInProgress, setTodosInProgress] = useState(() => {
-    return todos.filter((todo) => todo.status==='done' || todo.status === 'progress');
-  });
-
-
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos))
     window.localStorage.setItem('todosCount', JSON.stringify(todosCount))
     window.localStorage.setItem('todosLastId', JSON.stringify(todosLastId))
-    setTodosInProgress(todos.filter((todo) => todo.status==='done' || todo.status === 'progress'))
   }, [todos, todosCount, todosLastId])
 
   const markDone = function( id: number ){
@@ -112,7 +106,7 @@ function App() {
     <div className="App">
       <Header todosCount={ todosCount }/>
       <TodoForm createTodo={ createTodo }/>
-      <TodoPanel todos={ todosInProgress } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
+      <TodoPanel todos={ todos } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
       { modalView && <ModalWindow deletingTodo={deletingTodo} closeWindow={ closeWindow } confirm={ confirm } cancel={ cancel }/> }
     </div>
   );
