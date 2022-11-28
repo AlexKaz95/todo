@@ -8,10 +8,14 @@ interface ITodoItemProps {
     todo: ITodoItem,
     markDone: Function,
     forget: Function,
-    archiveTodo: Function
+    archiveTodo: Function,
+    onDragStart: Function
+    onDragEnd: Function
+    onDragOver: Function
+    order: number
 }
 
-export const TodoItem: React.FC<ITodoItemProps> = function({ todo, markDone, forget, archiveTodo }){
+export const TodoItem: React.FC<ITodoItemProps> = function({ todo, markDone, forget, archiveTodo, onDragStart, onDragEnd, onDragOver, order }){
     const [selected, setSelected] = useState(false);
 
     const markDoneWrapper: MouseEventHandler = function( e ){
@@ -29,22 +33,29 @@ export const TodoItem: React.FC<ITodoItemProps> = function({ todo, markDone, for
         archiveTodo(todo.id);
     }
 
-    const onDragStart: MouseEventHandler = function( e ){
+    const onDragStartWrapper: MouseEventHandler = function( e ){
         setSelected(true);
-        console.log('onDragStart');
+        onDragStart(todo.id);
     }
 
-    const onDragEnd: MouseEventHandler = function( e ){
+    const onDragEndWrapper: MouseEventHandler = function( e ){
         setSelected(false);
-        console.log('onDragEnd', e.pageX);
+        onDragEnd();
     }
 
-    const onDragOver: MouseEventHandler = function( e ){
+    const onDragOverWrapper: MouseEventHandler = function( e ){
         e.preventDefault();
-        console.log('onDragOver', e.pageX);
+        onDragOver( todo.id, order );
     }
 
-    return <div className={`${styles.container} ${styles[selected ? 'selected' : '']}`} onDragEnd={onDragEnd} onDragStart={onDragStart} onDragOver={onDragOver} draggable>
+    return <div 
+            className={`${styles.container} 
+            ${styles[selected ? 'selected' : '']}`} 
+            onDragEnd={onDragEndWrapper} 
+            onDragStart={onDragStartWrapper} 
+            onDragOver={onDragOverWrapper} 
+            draggable
+    >
         <div className={`${styles.title} ${todo.done && styles.title_done}`}>{todo.title}</div>
         <div className={styles.actionField}>
             { !todo.done && <Button text='Забить' callback={ forgetWrapper } order='second'/> } 

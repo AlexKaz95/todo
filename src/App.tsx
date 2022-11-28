@@ -20,6 +20,12 @@ function App() {
     return 0
   });
 
+  const [todosLastId, setTodosLastId] = useState(() => {
+    const dataTodosLastId = window.localStorage.getItem('todosLastId');
+    if (dataTodosLastId) return JSON.parse(dataTodosLastId);
+    return 0
+  });
+
   const [todosInProgress, setTodosInProgress] = useState(() => {
     return todos.filter((todo) => todo.status==='done' || todo.status === 'progress');
   });
@@ -28,8 +34,9 @@ function App() {
   useEffect(() => {
     window.localStorage.setItem('todos', JSON.stringify(todos))
     window.localStorage.setItem('todosCount', JSON.stringify(todosCount))
+    window.localStorage.setItem('todosLastId', JSON.stringify(todosLastId))
     setTodosInProgress(todos.filter((todo) => todo.status==='done' || todo.status === 'progress'))
-  }, [todos, todosCount])
+  }, [todos, todosCount, todosLastId])
 
   const markDone = function( id: number ){
     setTodos( 
@@ -53,7 +60,8 @@ function App() {
   }
 
   const createTodo = function( data: ITodoItem ){
-    setTodos([...todos, {...data, id: todos[todos.length - 1].id + 1}]);
+    setTodosLastId(todosLastId + 1)
+    setTodos([...todos, {...data, id: todosLastId}]);
     setTodosCount( todosCount + 1 );
   }
 
@@ -69,6 +77,15 @@ function App() {
         return todo
       }
      ));
+  }
+
+  const changeOrder = function(order: number, selected: ITodoItem ){
+    const selectedOrder = todos.findIndex(todo => todo.id === selected.id)
+    setTodos(prev => {
+      const reordered = [...prev ];
+      reordered.splice(order, 0, ...reordered.splice(selectedOrder, 1));
+      return reordered
+    })
   }
 
   const closeWindow: MouseEventHandler = function( e ){
@@ -90,11 +107,12 @@ function App() {
     e.preventDefault();
     closeWindow( e );
   }
+
   return (
     <div className="App">
       <Header todosCount={ todosCount }/>
       <TodoForm createTodo={ createTodo }/>
-      <TodoPanel todos={ todosInProgress } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} />
+      <TodoPanel todos={ todosInProgress } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
       { modalView && <ModalWindow deletingTodo={deletingTodo} closeWindow={ closeWindow } confirm={ confirm } cancel={ cancel }/> }
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, FC, MouseEventHandler, useState } from "react"
+import React, { ChangeEvent, ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useState } from "react"
 import { Button } from "../Button/button";
 import styles from './todoForm.module.css';
 
@@ -27,6 +27,13 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
         setTodo(DEFAULT_TODO);
     }
 
+    const enterDown: KeyboardEventHandler = function(e){
+        if (e.key === 'Enter'){
+            createTodo( todo );
+            setTodo(DEFAULT_TODO);
+        }
+    }
+
     return <div className={styles.form_container}>
         <input 
             className={styles.form_input} 
@@ -38,6 +45,7 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
             onChange={onChange}
             autoComplete='off'
             placeholder="Я сделаю..."
+            onKeyDown={enterDown}
         />
         <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' order='main'/>
     </div>
