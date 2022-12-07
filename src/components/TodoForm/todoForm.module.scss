@@ -4,7 +4,6 @@
     margin: 40px auto;
     box-shadow: 1px 1px 20px #ccc;
     border-radius: 12px;
-    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,7 +20,6 @@
     background: #efefef;
     color: #333;
     width: 65%;
-    box-sizing: border-box;
 }
 
 .form_input:focus{
@@ -31,4 +29,26 @@
 
 .form_input:invalid{
     outline-color: #e60000;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .form_container{
+        padding: 24px 16px;
+        margin: 20px auto;
+    }
+    
+    .form_input{
+        padding: 8px 12px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+    .form_container{
+        padding: 24px 16px;
+        margin: 20px auto;
+    }
+    
+    .form_input{
+        padding: 8px 12px;
+    }
 }

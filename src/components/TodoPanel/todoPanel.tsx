@@ -1,6 +1,7 @@
-import React, { MouseEventHandler, useState, useEffect, FC } from "react";
+import React, { useState, FC } from "react";
+import { CategoryTabs } from "../CategoryTabs/categoryTabs";
 import { TodoItem } from "../TodoItem/todoItem";
-import styles from './todoPanel.module.css';
+import styles from './todoPanel.module.scss';
 
 interface ITodosPanelProps {
     todos: ITodoItem[],
@@ -35,7 +36,9 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
     })
 
     if (filteredTodos.length) {
-        return <div className={styles.todoPanel_container}>
+        return <>
+        <CategoryTabs/>
+        <div className={styles.todoPanel_container}>
             { filteredTodos.map( (el: ITodoItem ) => <TodoItem 
                 todo={el} 
                 order={el.order!}
@@ -48,6 +51,7 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
                 onDragOver={onDragOver}
             />) }
         </div>
+        </>
     } else {
         return <></>
     }

@@ -1,0 +1,50 @@
+.header_container{
+    padding: 32px 96px;
+    width: max-content;
+    margin: 40px auto 0px;
+    box-shadow: 1px 1px 20px #ccc;
+    border-radius: 12px;
+}
+
+.header_title{
+    font-size: 64px;
+    font-weight: bolder;
+    color: #333;
+}
+
+.header_count{
+    font-size: 28px;
+    font-weight: 400;
+    color: #333;
+    margin-top: 16px;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .header_container{
+        padding: 24px 64px;
+        margin-top: 30px;
+    }
+    
+    .header_title{
+        font-size: 26px;
+    }
+    
+    .header_count{
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+    .header_container{
+        padding: 24px 64px;
+        margin-top: 30px;
+    }
+    
+    .header_title{
+        font-size: 26px;
+    }
+    
+    .header_count{
+        font-size: 14px;
+    }
+}

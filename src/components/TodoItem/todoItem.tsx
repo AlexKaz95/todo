@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useState } from "react";
 import { Button } from "../Button/button";
-import styles from "./todoItem.module.css";
+import styles from "./todoItem.module.scss";
 
 interface ITodoItemProps {
     todo: ITodoItem,

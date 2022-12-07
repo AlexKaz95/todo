@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import { Header } from './components/Header/header';
 import { ModalWindow } from './components/ModalWindow/modalWindow';
 import { TodoForm } from './components/TodoForm/todoForm';
@@ -34,7 +34,7 @@ function App() {
 
   const markDone = function( id: number ){
     setTodos( 
-      todos.map(todo => { 
+      todos.map((todo: ITodoItem) => { 
         if (todo.id === id){
           return {
             ...todo,

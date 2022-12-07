@@ -1,6 +1,6 @@
 import { FC, MouseEventHandler } from "react"
 import { Button } from "../Button/button";
-import styles from './modalWindow.module.css';
+import styles from './modalWindow.module.scss';
 
 interface IModalWindowProps {
     deletingTodo: ITodoItem | null,

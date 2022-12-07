@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useState } from "react"
 import { Button } from "../Button/button";
-import styles from './todoForm.module.css';
+import styles from './todoForm.module.scss';
 
 interface ITodoForm {
     createTodo: Function
@@ -10,7 +10,8 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
     const DEFAULT_TODO = {
         title: '',
         status: 'progress',
-        done: false
+        done: false,
+        category: 'without'
     };
 
     const [todo, setTodo] = useState(DEFAULT_TODO);

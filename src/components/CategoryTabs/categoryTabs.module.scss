@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.addBtn{
+  padding: 6px 12px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px dashed #999;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addBtn:hover{
+
+}

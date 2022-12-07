@@ -1,0 +1,22 @@
+.todoPanel_container{
+    width: 100%;
+    box-shadow: 1px 1px 20px #ccc;
+    border-radius: 10px;
+    padding: 40px 56px;
+    box-sizing: border-box;
+    margin-bottom: 80px;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .todoPanel_container{
+        padding: 24px 16px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+    .todoPanel_container{
+        padding: 24px 16px;
+        margin-bottom: 40px;
+    }
+}

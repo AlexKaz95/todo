@@ -1,0 +1,113 @@
+@use '../../styles/library';
+
+%red-linear-gradient{
+    background: linear-gradient(library.$red 100%, library.$white 100%);
+    background-repeat: no-repeat;
+}
+
+%green-linear-gradient{
+    background: linear-gradient(library.$green 100%, library.$white 100%);
+    background-repeat: no-repeat;
+}
+
+%gray-linear-gradient{
+    background: linear-gradient(library.$deep-gray 100%, library.$white 100%);
+    background-repeat: no-repeat;
+}
+
+.main{
+    border-radius: 10px;
+    font-weight: bolder;
+    padding: 8px 24px;
+    text-align: center;
+    display: block;
+    width: max-content;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    &_default{
+        @extend %gray-linear-gradient;
+        color: library.$deep-gray;
+        border: 1px solid library.$deep-gray;
+        background-size: 0%;
+
+        &:hover, &:focus{
+            @extend %gray-linear-gradient;
+            color: library.$light-gray;
+            outline-color: library.$light-green;
+            background-size: 100%;
+        }
+    }
+
+    &_green{
+        @extend %green-linear-gradient;
+        color: library.$green;
+        border: 1px solid library.$green;
+        background-repeat: no-repeat;
+        background-size: 0%;
+
+        &:hover, &:focus{
+            @extend %green-linear-gradient;
+            background-size: 100%;
+            outline-color: library.$light-green;
+            color: library.$white;
+        }
+    }
+
+    &_red{
+        @extend %red-linear-gradient;
+        border: 1px solid library.$red;
+        color: library.$red;
+        background-size: 0%;
+
+        &:hover, &:focus{
+            @extend %red-linear-gradient;
+            background-size: 100%;
+            outline-color: library.$light-green;
+            color: library.$white;
+        }
+    }
+}
+
+.second{
+    color: #999;
+    text-align: baseline;
+    display: block;
+    width: max-content;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.5s;
+
+    &:hover{
+        color: library.$black;
+        &::after{
+            width: 100%;
+        }
+    }
+
+    &::after{
+        content: " ";
+        margin-top: 5px;
+        width: 0%;
+        display: block;
+        height: 2px;
+        background-color: library.$deep-gray;
+        transition: 0.5s;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .main{
+        padding: 7px 16px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+    .main{
+        padding: 7px 16px;
+        font-size: 12px;
+    }
+}
