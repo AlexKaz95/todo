@@ -3,9 +3,14 @@ import styles from './categoryTabs.module.scss'
 
 const categories = [
   {
-    label: 'without',
+    label: 'all',
     color: '#333',
     active: true
+  },
+  {
+    label: 'without',
+    color: '#333',
+    active: false
   },
   {
     label: 'home',
