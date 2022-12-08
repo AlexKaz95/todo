@@ -2,9 +2,15 @@
     width: 100%;
     box-shadow: 1px 1px 20px #ccc;
     border-radius: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     padding: 40px 56px;
     box-sizing: border-box;
     margin-bottom: 80px;
+}
+
+.empty{
+    
 }
 
 @media (min-width: 320px) and (max-width: 500px) {

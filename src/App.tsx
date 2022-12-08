@@ -14,6 +14,12 @@ function App() {
     return []
   });
 
+  const [categories, setCategories] = useState<TOption[]>(() => {
+    const dataCats = window.localStorage.getItem('categories');
+    if (dataCats) return JSON.parse(dataCats);
+    return [{ id: 'all', label: 'Все', color: '#999'}];
+  });
+
   const [todosCount, setTodosCount] = useState(() => {
     const dataTodosCount = window.localStorage.getItem('todosCount');
     if (dataTodosCount) return JSON.parse(dataTodosCount);
@@ -30,7 +36,8 @@ function App() {
     window.localStorage.setItem('todos', JSON.stringify(todos))
     window.localStorage.setItem('todosCount', JSON.stringify(todosCount))
     window.localStorage.setItem('todosLastId', JSON.stringify(todosLastId))
-  }, [todos, todosCount, todosLastId])
+    window.localStorage.setItem('categories', JSON.stringify(categories))
+  }, [todos, todosCount, todosLastId, categories])
 
   const markDone = function( id: number ){
     setTodos( 
@@ -104,8 +111,8 @@ function App() {
   return (
     <div className="App">
       <Header todosCount={ todosCount }/>
-      <TodoForm createTodo={ createTodo }/>
-      <TodoPanel todos={ todos } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
+      <TodoForm createTodo={ createTodo } categories={ categories }/>
+      <TodoPanel todos={ todos } categories={ categories } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
       { modalView && <ModalWindow deletingTodo={deletingTodo} closeWindow={ closeWindow } confirm={ confirm } cancel={ cancel }/> }
     </div>
   );

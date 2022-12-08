@@ -10,3 +10,13 @@ interface ITodoItem {
     order?: number,
     category?: string
 }
+
+type TOption = {
+  label: string,
+  color: string,
+  id: string
+}
+  
+type THeader = {
+label: string
+}

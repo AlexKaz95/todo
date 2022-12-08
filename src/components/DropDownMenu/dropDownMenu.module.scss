@@ -1,0 +1,68 @@
+@use '../../styles/library';
+
+.container {
+  position: relative;
+  min-width: 120px;
+  border-radius: 10px;
+}
+
+.container:focus{
+  outline: auto;
+  outline-width: 1px;
+}
+
+.menuToggle{
+  font-size: 15px;
+  padding: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.header {
+  position: relative;
+  padding: 7px 10px 7px 10px;
+  background-color: library.$light-gray;
+  border-radius: 10px;
+  font-size: 14px;
+  color: library.$gray;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.bottom_radius_none{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.options{
+  position: absolute;
+
+  z-index: 2;
+  background-color: library.$light-gray;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: left;
+  color: library.$gray;
+  font-size: 14px;
+}
+
+.option, .option_add{
+  padding: 7px 10px 7px 10px;
+  transition: .1s;
+
+  &:hover{
+    background-color: library.$gray;
+    color: library.$white;
+  }
+}
+
+.option_add{
+  text-align: center;
+  font-weight: bold;
+  color: library.$deep-gray;
+}

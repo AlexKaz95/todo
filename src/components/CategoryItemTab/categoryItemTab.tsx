@@ -1,20 +1,21 @@
-import { FC } from 'react';
-import {  } from 'react-router-dom';
+import { FC, MouseEventHandler } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './categoryItemTab.module.scss';
 
 
-type TCategory = {
-  label: string
-  color: string
-  active: boolean
-}
-
 interface ICategoryItemTabProps{
-  cat: TCategory
+  category: TOption
 }
 
-export const CategoryItemTab: FC<ICategoryItemTabProps> = function({ cat }){
-  return <div className={styles.container} style={{background: cat.active ? cat.color: '#ccc', color: 'white'}}>
-    {cat.label}
+export const CategoryItemTab: FC<ICategoryItemTabProps> = function({ category }){
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const onClickHandler: MouseEventHandler = function( e ){
+    e.preventDefault();
+    setSearchParams({ catId: category.id });
+  }
+
+  return <div className={styles.container} style={{background: category.id === searchParams.get( 'catId' ) ? category.color: '#ccc', color: 'white'}} onClick={onClickHandler}>
+    { category.label }
   </div>
 }

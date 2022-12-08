@@ -1,28 +1,14 @@
+import { FC, useState } from 'react'
 import { CategoryItemTab } from '../CategoryItemTab/categoryItemTab'
 import styles from './categoryTabs.module.scss'
 
-const categories = [
-  {
-    label: 'without',
-    color: '#333',
-    active: true
-  },
-  {
-    label: 'home',
-    color: '#00a00e',
-    active: false
-  },
-  {
-    label: 'home',
-    color: '#00a00e',
-    active: false
-  },
-]
+interface ICategoryTabsProps {
+  categories: TOption[]
+}
 
-export const CategoryTabs = function(){
+export const CategoryTabs: FC<ICategoryTabsProps> = function( { categories } ){
   return <div className={styles.container}>{
-    categories.map(cat => <CategoryItemTab cat={cat}/>)
+    categories.map(category => <CategoryItemTab category={category}/>)
   }
-  <div className={styles.addBtn}> + </div>
   </div>
 }
