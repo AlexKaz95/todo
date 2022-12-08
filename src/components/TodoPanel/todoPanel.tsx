@@ -1,7 +1,9 @@
 import React, { useState, FC } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { CategoryTabs } from "../CategoryTabs/categoryTabs";
 import { TodoItem } from "../TodoItem/todoItem";
 import styles from './todoPanel.module.scss';
+import { TodoPanelPlug } from "./todoPanelPlug";
 
 interface ITodosPanelProps {
     todos: ITodoItem[],
@@ -9,10 +11,12 @@ interface ITodosPanelProps {
     forget: Function,
     archiveTodo: Function,
     changeOrder: Function
+    categories: TCategory[]
 }
 
-export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forget, archiveTodo, changeOrder }){
+export const TodoPanel: FC<ITodosPanelProps> = function({ todos,  categories, markDone, forget, archiveTodo, changeOrder }){
     const [selected, setSelected] = useState<ITodoItem>();
+    const [params, setSearchParams] = useSearchParams();
 
     const onDragStart = function( id: number ){
         setSelected(todos.find(todo => todo.id === id))
@@ -32,12 +36,12 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
 
     const filteredTodos = todos.filter( (el: ITodoItem, indx: number ) => {
         el.order = indx;
-        return el.status === 'done' || el.status === 'progress' 
-    })
+        return (el.status === 'done' || el.status === 'progress' ) && ( el.category === params.get('catId') )
+    })    
 
     if (filteredTodos.length) {
         return <>
-        <CategoryTabs/>
+        <CategoryTabs categories={categories}/>
         <div className={styles.todoPanel_container}>
             { filteredTodos.map( (el: ITodoItem ) => <TodoItem 
                 todo={el} 
@@ -53,6 +57,9 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos, markDone, forge
         </div>
         </>
     } else {
-        return <></>
+        return <>
+        <CategoryTabs categories={categories}/>
+        <TodoPanelPlug/>
+        </>
     }
 } 

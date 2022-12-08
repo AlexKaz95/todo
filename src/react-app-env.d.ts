@@ -10,3 +10,9 @@ interface ITodoItem {
     order?: number,
     category?: string
 }
+
+type TCategory = {
+  label: string,
+  color: string,
+  id: string
+}

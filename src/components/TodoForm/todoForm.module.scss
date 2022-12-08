@@ -4,9 +4,11 @@
     margin: 40px auto;
     box-shadow: 1px 1px 20px #ccc;
     border-radius: 12px;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 150px 1fr;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
 .form_inputWrapper{
@@ -16,10 +18,10 @@
 .form_input{
     padding: 10px 12px;
     border-radius: 10px;
-    border: 0px solid #efefef;
+    border: none;
     background: #efefef;
     color: #333;
-    width: 65%;
+    width: 100%;
 }
 
 .form_input:focus{

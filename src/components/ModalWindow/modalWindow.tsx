@@ -9,8 +9,8 @@ interface IModalWindowProps {
     cancel: MouseEventHandler
 }
 
-export const ModalWindow: FC<IModalWindowProps> = function({closeWindow, confirm, cancel, deletingTodo}){
-    return <div className={styles.container} onClick={closeWindow}>
+export const ModalWindow: FC<IModalWindowProps> = function({ closeWindow, confirm, cancel, deletingTodo }){
+    return <div className={styles.container} onClick={ closeWindow }>
         <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <span className={`material-symbols-outlined ${styles.closeButton}`} onClick={closeWindow}>close</span>
         
@@ -19,8 +19,8 @@ export const ModalWindow: FC<IModalWindowProps> = function({closeWindow, confirm
         </div>
 
         <div className={styles.actionField}>
-            <Button text='Забить' callback={confirm} order='main' color="red"/>
-            <Button text='Не, оставлю' callback={cancel} order='main'/>
+            <Button text='Забить' callback={confirm} type='main' color="red"/>
+            <Button text='Не, оставлю' callback={cancel} type='main'/>
         </div>
         </div>
     </div>

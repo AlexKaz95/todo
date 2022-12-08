@@ -1,0 +1,105 @@
+@use '../../styles/library';
+
+.container {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.container:focus{
+  outline: auto;
+  outline-width: 1px;
+}
+
+.menuToggle{
+  font-size: 15px;
+  padding: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.header {
+  position: relative;
+  padding: 9px 12px;
+  background-color: library.$light-gray;
+  border-radius: 10px;
+  font-size: 14px;
+  color: library.$gray;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 3;
+
+  .label{
+    line-break: loose;
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.bottom_radius_none{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.options{
+  position: absolute;
+  z-index: 2;
+  background-color: library.$light-gray;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: left;
+  color: library.$gray;
+  font-size: 14px;
+}
+
+.option, .option_add{
+  padding: 7px 10px 7px 10px;
+  transition: .1s;
+  cursor: pointer;
+
+  &:hover{
+    background-color: library.$gray;
+    color: library.$white;
+  }
+}
+
+.option_add{
+  font-weight: bold;
+  color: library.$gray;
+}
+
+.options_input{
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  max-width: 100%;
+  background: #efefef;
+  color: #333;
+}
+
+.input_container{
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  word-wrap: normal;
+  word-break: keep-all;
+  overflow: hidden;
+}
+
+.close_input{
+  font-size: 16px;
+  color: library.$deep-gray;
+  background-color: library.$light-gray;
+  width: 10px;
+  right: 14px;
+  font-weight: bold;
+  position: absolute;
+  cursor: pointer;
+}

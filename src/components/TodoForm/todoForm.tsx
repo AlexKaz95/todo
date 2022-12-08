@@ -1,17 +1,20 @@
 import React, { ChangeEvent, ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useState } from "react"
 import { Button } from "../Button/button";
+import { DropDownMenu } from "../DropDownMenu/dropDownMenu";
 import styles from './todoForm.module.scss';
 
 interface ITodoForm {
     createTodo: Function
+    categories: TCategory[]
+    createCategory: Function
 }
 
-export const TodoForm: FC<ITodoForm> = function({ createTodo }){
+export const TodoForm: FC<ITodoForm> = function({ createTodo, categories, createCategory }){
     const DEFAULT_TODO = {
         title: '',
         status: 'progress',
         done: false,
-        category: 'without'
+        category: 'all'
     };
 
     const [todo, setTodo] = useState(DEFAULT_TODO);
@@ -59,12 +62,21 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo }){
             value={todo.title} 
             name="title" 
             id="title" 
-            onChange={onChange}
+            onChange={ onChange }
             autoComplete='off'
             placeholder="Я сделаю..."
             onKeyDown={ enterDown }
             onBlur={() => { setNotValidClass('') }}
         />
-        <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' order='main'/>
+
+        <DropDownMenu 
+            options={categories} 
+            headerDef={categories[0]} 
+            createCategory={createCategory}
+            setCategory={( option: TCategory ) => setTodo({ ...todo, category: option.label})}
+            tabIndex={0}
+        />
+
+        <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' type='main'/>
     </div>
 }
