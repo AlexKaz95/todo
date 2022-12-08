@@ -72,6 +72,7 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo, categories, create
         <DropDownMenu 
             options={categories} 
             headerDef={categories[0]} 
+            createCategory={createCategory}
             setCategory={( option: TCategory ) => setTodo({ ...todo, category: option.label})}
             tabIndex={0}
         />

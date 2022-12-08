@@ -31,6 +31,14 @@
   justify-content: space-between;
   cursor: pointer;
   z-index: 3;
+
+  .label{
+    line-break: loose;
+    display: inline-block;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }
 
 .bottom_radius_none{
@@ -80,6 +88,9 @@
   display: flex;
   max-width: 100%;
   align-items: center;
+  word-wrap: normal;
+  word-break: keep-all;
+  overflow: hidden;
 }
 
 .close_input{

@@ -9,10 +9,11 @@ interface IDropDownMenuProps{
   options: TCategory[],
   headerDef: TCategory
   setCategory: Function
+  createCategory: Function
   tabIndex: number
 }
 
-export const DropDownMenu: FC<IDropDownMenuProps> = function( { options, headerDef, setCategory, tabIndex } ){
+export const DropDownMenu: FC<IDropDownMenuProps> = function( { options, headerDef, setCategory, tabIndex, createCategory } ){
   const [header, setHeader] = useState( headerDef )
   const [menuOpened, setMenuOpened] = useState(false)
   const [inputOpened, setInputOpened] = useState(false)
@@ -30,7 +31,7 @@ export const DropDownMenu: FC<IDropDownMenuProps> = function( { options, headerD
   }
 
   return <div className={styles.container} tabIndex={tabIndex}>
-    { inputOpened && <MenuInput setInputOpened={setInputOpened} /> }
+    { inputOpened && <MenuInput setInputOpened={setInputOpened} createCategory={createCategory}/> }
     { !inputOpened && <MenuHeader header={header} menuOpened={menuOpened} setMenuOpened={setMenuOpened}/> }
     { menuOpened && <MenuOptions options={options} openInput={openInput} pickOption={pickOption}/> }
   </div>

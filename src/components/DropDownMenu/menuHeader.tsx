@@ -17,7 +17,7 @@ export const MenuHeader: FC<IMenuHeader> = function({ menuOpened, setMenuOpened,
     className={`${styles.header} ${menuOpened ? styles.bottom_radius_none: ''}`} 
     onClick={ menuToggleHandler }
   >
-  <span>{ header?.label ?? 'Категория' }</span>
+  <span className={styles.label}>{ header?.label ?? 'Категория' }</span>
   { 
     menuOpened
     ? <span className={`material-symbols-outlined ${styles.menuToggle}`}>arrow_drop_up</span>

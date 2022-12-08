@@ -3,9 +3,10 @@ import styles from './dropDownMenu.module.scss'
 
 interface IMenuInputProps{
   setInputOpened: Function
+  createCategory: Function
 }
 
-export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened }){
+export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened, createCategory }){
   const DEFAULT_CATEGORY: TCategory = {
     label: '',
     id: '',
@@ -14,9 +15,10 @@ export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened }){
   
   const [newCategory, setNewCategory] = useState(DEFAULT_CATEGORY)
 
-  const createCategory: KeyboardEventHandler = function( e ){
+  const createCategoryHandler: KeyboardEventHandler = function( e ){
     if (e.key === 'Enter'){
       console.log(newCategory)
+      createCategory(newCategory)
       setInputOpened(false);
       setNewCategory(DEFAULT_CATEGORY);
     }
@@ -55,7 +57,7 @@ export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened }){
     onChange={ changeCategoryHandler }
     autoComplete='off'
     placeholder="Новая категория..."
-    onKeyDown = { createCategory }
+    onKeyDown = { createCategoryHandler }
     onBlur={ onBlurHandler }
   />
 
