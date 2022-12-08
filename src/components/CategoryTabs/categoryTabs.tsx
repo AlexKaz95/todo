@@ -3,7 +3,7 @@ import { CategoryItemTab } from '../CategoryItemTab/categoryItemTab'
 import styles from './categoryTabs.module.scss'
 
 interface ICategoryTabsProps {
-  categories: TOption[]
+  categories: TCategory[]
 }
 
 export const CategoryTabs: FC<ICategoryTabsProps> = function( { categories } ){

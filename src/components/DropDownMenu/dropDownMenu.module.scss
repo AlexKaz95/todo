@@ -2,8 +2,8 @@
 
 .container {
   position: relative;
-  min-width: 120px;
   border-radius: 10px;
+  width: 100%;
 }
 
 .container:focus{
@@ -20,7 +20,7 @@
 
 .header {
   position: relative;
-  padding: 7px 10px 7px 10px;
+  padding: 9px 12px;
   background-color: library.$light-gray;
   border-radius: 10px;
   font-size: 14px;
@@ -40,7 +40,6 @@
 
 .options{
   position: absolute;
-
   z-index: 2;
   background-color: library.$light-gray;
   width: 100%;
@@ -54,6 +53,7 @@
 .option, .option_add{
   padding: 7px 10px 7px 10px;
   transition: .1s;
+  cursor: pointer;
 
   &:hover{
     background-color: library.$gray;
@@ -62,7 +62,33 @@
 }
 
 .option_add{
-  text-align: center;
   font-weight: bold;
+  color: library.$gray;
+}
+
+.options_input{
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  display: block;
+  max-width: 100%;
+  background: #efefef;
+  color: #333;
+}
+
+.input_container{
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+}
+
+.close_input{
+  font-size: 16px;
   color: library.$deep-gray;
+  background-color: library.$light-gray;
+  width: 10px;
+  right: 14px;
+  font-weight: bold;
+  position: absolute;
+  cursor: pointer;
 }

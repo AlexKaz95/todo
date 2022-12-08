@@ -5,10 +5,11 @@ import styles from './todoForm.module.scss';
 
 interface ITodoForm {
     createTodo: Function
-    categories: TOption[]
+    categories: TCategory[]
+    createCategory: Function
 }
 
-export const TodoForm: FC<ITodoForm> = function({ createTodo, categories }){
+export const TodoForm: FC<ITodoForm> = function({ createTodo, categories, createCategory }){
     const DEFAULT_TODO = {
         title: '',
         status: 'progress',
@@ -67,12 +68,14 @@ export const TodoForm: FC<ITodoForm> = function({ createTodo, categories }){
             onKeyDown={ enterDown }
             onBlur={() => { setNotValidClass('') }}
         />
+
         <DropDownMenu 
             options={categories} 
             headerDef={categories[0]} 
-            setCategory={( option: TOption ) => setTodo({ ...todo, category: option.label})}
+            setCategory={( option: TCategory ) => setTodo({ ...todo, category: option.label})}
             tabIndex={0}
         />
-        <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' order='main'/>
+
+        <Button text='ОБЕЩАЮ' callback={ createTodoWrapper } tabIndex={0} color='green' type='main'/>
     </div>
 }

@@ -1,48 +1,37 @@
-import { FC, MouseEventHandler, useState } from 'react'
+import { ChangeEvent, ChangeEventHandler, FC, KeyboardEventHandler, MouseEventHandler, useRef, useState } from 'react'
 import styles from './dropDownMenu.module.scss'
+import { MenuHeader } from './menuHeader'
+import { MenuInput } from './menuInput'
 import { MenuItem } from './menuItem'
+import { MenuOptions } from './menuOptions'
 
 interface IDropDownMenuProps{
-  options: TOption[],
-  headerDef: THeader
+  options: TCategory[],
+  headerDef: TCategory
   setCategory: Function
   tabIndex: number
 }
 
 export const DropDownMenu: FC<IDropDownMenuProps> = function( { options, headerDef, setCategory, tabIndex } ){
   const [header, setHeader] = useState( headerDef )
-  const [isOpen, setIsOpen] = useState(false)
+  const [menuOpened, setMenuOpened] = useState(false)
+  const [inputOpened, setInputOpened] = useState(false)
 
-  const menuToggle: MouseEventHandler = function(e){
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  }
-
-  const pickOption = function( option: TOption ){
+  const pickOption = function( option: TCategory ){
     setHeader( option );
     setCategory( option );
-    setIsOpen( false );
+    setMenuOpened( false );
   }
 
+  const openInput: MouseEventHandler = function(e){
+    e.preventDefault();
+    setMenuOpened( false );
+    setInputOpened( true );
+  }
 
-  return <>
-    <div className={styles.container} tabIndex={tabIndex}>
-      <div className={`${styles.header} ${isOpen ? styles.bottom_radius_none: ''}`} onClick={menuToggle}>
-        <span>{ header?.label ?? 'Категория' }</span>
-        { 
-          isOpen
-          ? <span className={`material-symbols-outlined ${styles.menuToggle}`}>arrow_drop_up</span>
-          : <span className={`material-symbols-outlined ${styles.menuToggle}`}>arrow_drop_down</span> 
-        }
-      </div>
-      {
-        isOpen
-        ? <div className={styles.options}> 
-            { options.map(op => <MenuItem option={op} pick={pickOption}/>)} 
-            <div className={styles.option_add}>+</div> 
-          </div>
-        : <></>
-      }
-    </div>
-  </>
+  return <div className={styles.container} tabIndex={tabIndex}>
+    { inputOpened && <MenuInput setInputOpened={setInputOpened} /> }
+    { !inputOpened && <MenuHeader header={header} menuOpened={menuOpened} setMenuOpened={setMenuOpened}/> }
+    { menuOpened && <MenuOptions options={options} openInput={openInput} pickOption={pickOption}/> }
+  </div>
 }

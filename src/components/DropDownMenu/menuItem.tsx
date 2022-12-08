@@ -2,8 +2,8 @@ import { FC, MouseEventHandler } from 'react'
 import styles from './dropDownMenu.module.scss'
 
 interface IMenuItemProps{
-  option: TOption
-  pick: ( option: TOption ) => void
+  option: TCategory
+  pick: Function
 }
 
 export const MenuItem: FC<IMenuItemProps> = function({ option, pick }){

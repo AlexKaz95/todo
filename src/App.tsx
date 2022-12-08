@@ -14,7 +14,7 @@ function App() {
     return []
   });
 
-  const [categories, setCategories] = useState<TOption[]>(() => {
+  const [categories, setCategories] = useState<TCategory[]>(() => {
     const dataCats = window.localStorage.getItem('categories');
     if (dataCats) return JSON.parse(dataCats);
     return [{ id: 'all', label: 'Все', color: '#999'}];
@@ -88,6 +88,10 @@ function App() {
     })
   }
 
+  const createCategory = function( data: TCategory ){
+    setCategories([...categories, data])
+  }
+
   const closeWindow: MouseEventHandler = function( e ){
     e.stopPropagation();
     e.preventDefault();
@@ -110,10 +114,31 @@ function App() {
 
   return (
     <div className="App">
-      <Header todosCount={ todosCount }/>
-      <TodoForm createTodo={ createTodo } categories={ categories }/>
-      <TodoPanel todos={ todos } categories={ categories } markDone={ markDone } forget={ forgetTodo } archiveTodo={archiveTodo} changeOrder={changeOrder}/>
-      { modalView && <ModalWindow deletingTodo={deletingTodo} closeWindow={ closeWindow } confirm={ confirm } cancel={ cancel }/> }
+      {/* <Header 
+        todosCount={ todosCount }
+      /> */}
+
+      <TodoForm 
+        createTodo={ createTodo } 
+        categories={ categories } 
+        createCategory={createCategory}
+      />
+
+      <TodoPanel 
+        todos={ todos } 
+        categories={ categories } 
+        markDone={ markDone } 
+        forget={ forgetTodo } 
+        archiveTodo={archiveTodo} 
+        changeOrder={changeOrder}
+      />
+
+      { modalView && <ModalWindow 
+        deletingTodo={deletingTodo} 
+        closeWindow={ closeWindow } 
+        confirm={ confirm } 
+        cancel={ cancel }
+      /> }
     </div>
   );
 }

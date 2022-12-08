@@ -11,12 +11,8 @@ interface ITodoItem {
     category?: string
 }
 
-type TOption = {
+type TCategory = {
   label: string,
   color: string,
   id: string
-}
-  
-type THeader = {
-label: string
 }

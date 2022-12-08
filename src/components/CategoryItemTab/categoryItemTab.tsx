@@ -4,7 +4,7 @@ import styles from './categoryItemTab.module.scss';
 
 
 interface ICategoryItemTabProps{
-  category: TOption
+  category: TCategory
 }
 
 export const CategoryItemTab: FC<ICategoryItemTabProps> = function({ category }){

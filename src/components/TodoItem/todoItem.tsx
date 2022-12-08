@@ -56,9 +56,9 @@ export const TodoItem: React.FC<ITodoItemProps> = function({ todo, markDone, for
     >
         <div className={`${styles.title} ${todo.done && styles.title_done}`}>{todo.title}</div>
         <div className={styles.actionField}>
-            { !todo.done && <Button text='Забить' callback={ forgetWrapper } order='second'/> } 
-            { !todo.done && <Button text='СДЕРЖАЛ' callback={ markDoneWrapper } order='main' color="green"/> }
-            { todo.done && <Button text='Архивировать' callback={ archiveTodoWrapper } order='main' color="default"/> }
+            { !todo.done && <Button text='Забить' callback={ forgetWrapper } type='second'/> } 
+            { !todo.done && <Button text='СДЕРЖАЛ' callback={ markDoneWrapper } type='main' color="green"/> }
+            { todo.done && <Button text='Архивировать' callback={ archiveTodoWrapper } type='main' color="default"/> }
         </div>
     </div>
 }

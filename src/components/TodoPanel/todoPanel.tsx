@@ -11,7 +11,7 @@ interface ITodosPanelProps {
     forget: Function,
     archiveTodo: Function,
     changeOrder: Function
-    categories: TOption[]
+    categories: TCategory[]
 }
 
 export const TodoPanel: FC<ITodosPanelProps> = function({ todos,  categories, markDone, forget, archiveTodo, changeOrder }){
