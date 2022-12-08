@@ -7,8 +7,7 @@ interface ICategoryTabsProps {
 }
 
 export const CategoryTabs: FC<ICategoryTabsProps> = function( { categories } ){
-  return <div className={styles.container}>{
-    categories.map(category => <CategoryItemTab category={category}/>)
-  }
+  return <div className={styles.container}>
+    { categories.map(category => <CategoryItemTab category={category}/>) }
   </div>
 }
