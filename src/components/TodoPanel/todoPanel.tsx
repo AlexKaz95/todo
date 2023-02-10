@@ -36,7 +36,7 @@ export const TodoPanel: FC<ITodosPanelProps> = function({ todos,  categories, ma
 
     const filteredTodos = todos.filter( (el: ITodoItem, indx: number ) => {
         el.order = indx;
-        return (el.status === 'done' || el.status === 'progress' ) && ( el.category === params.get('catId') )
+        return (el.status === 'done' || el.status === 'progress' ) && ( el.category === params.get('catId') || params.get('catId') === 'all' );
     })    
 
     if (filteredTodos.length) {

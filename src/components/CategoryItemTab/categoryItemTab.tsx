@@ -15,7 +15,10 @@ export const CategoryItemTab: FC<ICategoryItemTabProps> = function({ category })
     setSearchParams({ catId: category.id });
   }
 
-  return <div className={styles.container} style={{background: category.id === searchParams.get( 'catId' ) ? category.color: '#ccc', color: 'white'}} onClick={onClickHandler}>
+  return <div className={styles.container} style={{
+      background: category.id === searchParams.get( 'catId' ) ? category.color : '#ccc', 
+      color: 'white'
+    }} onClick={onClickHandler}>
     { category.label }
   </div>
 }
