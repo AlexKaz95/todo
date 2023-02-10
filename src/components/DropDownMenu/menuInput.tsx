@@ -10,7 +10,7 @@ export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened, createC
   const DEFAULT_CATEGORY: TCategory = {
     label: '',
     id: '',
-    color: ''
+    color: '#00a00e'
   }
   
   const [newCategory, setNewCategory] = useState(DEFAULT_CATEGORY)
@@ -28,7 +28,8 @@ export const MenuInput: FC<IMenuInputProps> = function({ setInputOpened, createC
     //ограничение на 150 символов
     setNewCategory({
       ...newCategory,
-      label: e.target.value
+      label: e.target.value,
+      id: e.target.value
     })
   }
 

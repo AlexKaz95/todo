@@ -89,6 +89,7 @@ function App() {
   }
 
   const createCategory = function( data: TCategory ){
+    console.log(data);
     setCategories([...categories, data])
   }
 
